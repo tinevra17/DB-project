@@ -19,7 +19,7 @@ session_start();
     <br/>
 
     <body>
-        <form action=".php" action="">
+        <form action="viewCourses.php" action="">
             <input name="viewCourses" type="submit" value="View Courses" />
         </form>
 

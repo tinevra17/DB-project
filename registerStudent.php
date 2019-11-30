@@ -5,15 +5,21 @@
 
     if(isset($_GET['submit'])){
         $conection = databaseConnection();
+
+        $id = htmlentities($_GET['iD']);
+        $degreePlan = htmlentities($_GET['degreePlan']);
+        $GPA = htmlentities($_GET['gpa']);
+        $classification = htmlentities($_GET['classification']);
         $email = htmlentities($_GET['email']);
         $username = htmlentities($_GET['username']);
         $password = htmlentities($_GET['password']);
-        $name = htmlentities($_GET['name']);
+        $Fname = htmlentities($_GET['Fname']);
+        $Lname = htmlentities($_GET['Lname']);
 
 
-        if($email != '' And $username != '' And $password != '' And $name!= '' ){
+        if($email != '' And $username != '' And $password != '' And $Fname!= ''  And $Lname!= '' And $classification!= '' And $GPA!= '' And $degreePlan!= ''  And $id != ''){
             //insert sql command
-            $sql = "INSERT INTO user ( Uemail, Username, Upassword, Uname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $name . "')";
+            $sql = "INSERT INTO user ( Uemail, Username, Upassword, Fname, Lname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $Fname . "' , " . "'". $Lname ."')";
             //echo $sql;
 
             if ($conection->query($sql) === TRUE) {
@@ -44,19 +50,32 @@
 
 <html>
     <br>
-    Register
+    Student registration
     <br>
     <body>        
         <form method = "get" action = "">
+
+            First Name:<br/>
+            <input type= "text" name = "Fname"> <br/>
+            Last Name:<br/>
+            <input type= "text" name = "Lname"> <br/>
             Email:<br/>
             <input type= "text" name = "email"> <br/>
+            ID:<br/>
+            <input type= "text" name = "iD"> <br/>
+            Degree Plan:<br/>
+            <input type= "text" name = "degreePlan"> <br/>
+            GPA:<br/>
+            <input type= "text" name = "gpa"> <br/>
+            Classification:<br/>
+            <input type= "text" name = "classification"> <br/>
             Username:<br/>
             <input type= "text" name = "username"> <br/>
             Password:<br/>
             <input type= "text" name = "password"> <br/>
-            Name:<br/>
-            <input type= "text" name = "name"> <br/>
+            
             <input type="submit" name="submit" value="Submit"></input>
+
         </form>
         <br>
         

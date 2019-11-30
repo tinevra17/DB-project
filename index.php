@@ -4,8 +4,12 @@
         <input type="submit" value="log in">
         </form>
 
-        <form action="register.php" method="get">
-            <input type="submit" value="register">
+        <form action="registerAdvisor.php" method="get">
+            <input type="submit" value="register as Advisor">
+        </form>
+
+        <form action="registerStudent.php" method="get">
+            <input type="submit" value="register as Student">
         </form>
 
     </body>
