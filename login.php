@@ -22,7 +22,6 @@
         $_SESSION["username"] = htmlentities($_GET['username']);
         $_SESSION["password"] = htmlentities($_GET['password']);
 
-
         // Formulate Query. 
         $query = "SELECT Username, Uemail, Fname, Lname FROM user WHERE Username = " ."'".     $_SESSION["username"]     ."'". " AND " . "Upassword = ". "'".$_SESSION["password"]."'";
     
@@ -40,18 +39,25 @@
                 $array = explode("@", $_SESSION["email"] );
                 $strEmail =  $array[1];
 
+                
                 //student
                 if(strlen($strEmail) > 12 ){
                     // echo "student";
+                    $_SESSION["home"] = "homeStudent.php";
+
                     Redirect('homeStudent.php', false);
 
                 }
                 //advisor
                 else{
                 //    echo "advisor";
+                $_SESSION["home"] = "homeAdvisor.php";
                     Redirect('homeAdvisor.php', false);
 
                 } 
+            }
+            else if($_SESSION["username"] == '' Or $_SESSION["password"] == ''){
+                echo "Empty fields, please fill out all completely.";
             }
             else{
                 // echo"not found";
@@ -78,9 +84,9 @@
             <input type="submit" name="submit" value="Log In"></input>
         </form>
 
-        <form action="register.php" action="post">
+        <form action="index.php" action="post">
             Not a user?  <br/>
-            <input name="submit2" type="submit" value="Register" />
+            <input name="submit2" type="submit" value="Home" />
         </form>
         </fieldset>
         <center>

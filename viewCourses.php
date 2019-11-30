@@ -49,7 +49,7 @@
         ?>
 
 
-        <form action="index.php" method="get">
+        <form action="homeStudent.php" method="get">
             <input type="submit" value="Home">
 
         </form>

@@ -72,7 +72,7 @@
             <!-- <input type="submit" name="home" value="Home" action = "index.php" action = "post"></input> -->
         </form>
 
-        <form action="index.php" method="get">
+        <form action="<php echo 'fuck'; ?>" method="get">
             <input type="submit" value="Home">
         </form>
 
