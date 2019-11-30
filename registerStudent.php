@@ -15,18 +15,38 @@
         $password = htmlentities($_GET['password']);
         $Fname = htmlentities($_GET['Fname']);
         $Lname = htmlentities($_GET['Lname']);
+        $name = $Fname ." " . $Lname;
+        $credits = htmlentities($_GET['credits']);
 
 
         if($email != '' And $username != '' And $password != '' And $Fname!= ''  And $Lname!= '' And $classification!= '' And $GPA!= '' And $degreePlan!= ''  And $id != ''){
             //insert sql command
             $sql = "INSERT INTO user ( Uemail, Username, Upassword, Fname, Lname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $Fname . "' , " . "'". $Lname ."')";
-            //echo $sql;
 
+            
+            //register in the user table
             if ($conection->query($sql) === TRUE) {
-                echo "Hello ". $name . ", you have succesfully register!";
+
+                $sql2 = "INSERT INTO student ( Uemail, Sid, Sdegree_plan, Sgpa, Sclassification, Scredits_earned) VALUES ( ". "'".$email."' , " . "'". $id . "'" . " , " . "'". $degreePlan ."'"  . " , " . "'". $GPA . "' , " . "'". $classification ."' , " . "'". $credits."')";
+                //register in the Student table
+                if ($conection->query($sql2) === TRUE) {
+                    echo "Hello ". $name . ", you have succesfully register as a sudent!";
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+
+             
+
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
+
+        
+           
+
+            
+
+        
             $conection->close();
 
         }
@@ -69,6 +89,8 @@
             <input type= "text" name = "gpa"> <br/>
             Classification:<br/>
             <input type= "text" name = "classification"> <br/>
+            Credits:<br/>
+            <input type= "text" name = "credits"> <br/>
             Username:<br/>
             <input type= "text" name = "username"> <br/>
             Password:<br/>
