@@ -11,8 +11,9 @@
         $_SESSION["password"] = htmlentities($_GET['password']);
 
 
+
         // Formulate Query. 
-        $query = "SELECT Username, Uemail, Uname FROM user WHERE Username = " ."'".     $_SESSION["username"]     ."'". " AND " . "Upassword = ". "'".$_SESSION["password"]."'";
+        $query = "SELECT Username, Uemail, Fname, Lname FROM user WHERE Username = " ."'".     $_SESSION["username"]     ."'". " AND " . "Upassword = ". "'".$_SESSION["password"]."'";
     
 
 
@@ -21,26 +22,29 @@
             //we have successfully query the user based on password and username
             if(mysqli_num_rows($result) > 0){
                 $user = mysqli_fetch_array($result);  
+                $name = $user["Fname"] . " ". $user["Lname"];
                 $_SESSION["email"] = $user["Uemail"];
-                $_SESSION["name"] = $user["Uname"];
+                $_SESSION["name"] = $name;
 
-                // if($user["Uemail"] == "student"){
-                //     Redirect('homeStudent.php', false);
+                //checking if the user is a student or an advisor based on the size of the email after "@"
+                $array = explode("@", $_SESSION["email"] );
+                $strEmail =  $array[1];
 
-                // }
-                // else if($user["Uemail"] == "advisor"){
-                //     Redirect('homeAdvisor.php', false);
+                //student
+                if(strlen($strEmail) > 12 ){
+                    //echo "student";
+                    Redirect('homeStudent.php', false);
 
-                // }
-                // else {
-                //     Redirect('homeFD.php', false);
-                // }
+                }
+                //advisor
+                else{
+                   // echo "advisor";
+                    Redirect('homeAdvisor.php', false);
 
-                Redirect('homeStudent.php', false);
-
-                      
+                } 
             }
             else{
+                // echo"not found";
                 Redirect('userNotFound.php', false);
             }
             

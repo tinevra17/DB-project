@@ -1,5 +1,9 @@
 <?php
-  echo "User not found"; // Your code here
+
+    session_start();
+    echo "User not found"; // Your code here
+    session_destroy();
+    
 ?>
 
 <html>

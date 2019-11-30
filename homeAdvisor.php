@@ -8,7 +8,7 @@ session_start();
 
         <?php
         // Echo session variables that were set on previous page
-        echo "Welcome student, " . $_SESSION["name"] . ".<br>";
+        echo "Welcome  Advisor, " . $_SESSION["name"] . ".<br>";
         echo "email  " . $_SESSION["email"] . ".<br>";
         echo "password " . $_SESSION["password"] . ".<br>";
         echo "username " . $_SESSION["username"] . ".<br>";
