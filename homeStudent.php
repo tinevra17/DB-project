@@ -4,21 +4,26 @@ session_start();
 
 
 <html>
-    <body>
+
+    <head>
+        <title>CS Advising</title>
+    </head>
+
+    <body bgcolor="F5F5F5">
+
+        <fieldset>
+        <legend><h2>Student Home</h2></legend>
 
         <?php
         // Echo session variables that were set on previous page
-        echo "Welcome student, " . $_SESSION["name"] . ".<br>";
-        echo "email  " . $_SESSION["email"] . ".<br>";
-        echo "password " . $_SESSION["password"] . ".<br>";
-        echo "username " . $_SESSION["username"] . ".<br>";
+        echo "Welcome, " . $_SESSION["name"] . "!<br>";
+        echo "Email:  " . $_SESSION["email"] . "<br>";
+        echo "Password: " . $_SESSION["password"] . "<br>";
+        echo "Username: " . $_SESSION["username"] . "<br>";
         ?>
 
-    </body>
-    <br/>
-    <br/>
+        <br/>
 
-    <body>
         <form action="viewCourses.php" action="">
             <input name="viewCourses" type="submit" value="View Courses" />
         </form>
@@ -35,7 +40,14 @@ session_start();
         <form action="logout.php" action="">
             <input name="logOut" type="submit" value="Log out" />
         </form>
+        </fieldset>
+
+        <center>
+        <img src="uteplogo.png" width="50%"/>
+        </center>
 
     </body>
+
+
 
 </html>

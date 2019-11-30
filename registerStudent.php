@@ -22,6 +22,7 @@
         if($email != '' And $username != '' And $password != '' And $Fname!= ''  And $Lname!= '' And $classification!= '' And $GPA!= '' And $degreePlan!= ''  And $id != ''){
             //insert sql command
             $sql = "INSERT INTO user ( Uemail, Username, Upassword, Fname, Lname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $Fname . "' , " . "'". $Lname ."')";
+            //echo $sql;
 
             
             //register in the user table
@@ -69,10 +70,13 @@
 
 
 <html>
-    <br>
-    Student registration
-    <br>
-    <body>        
+    <head>
+        <title>CS Advising</title>
+    </head>
+    <body bgcolor="F5F5F5">  
+        <fieldset> 
+        <legend><h2>Register for an Account</h2></legend>
+    
         <form method = "get" action = "">
 
             First Name:<br/>
@@ -100,9 +104,10 @@
 
         </form>
         <br>
-        
-        <form action="login.php" method="get">
-            <input type="submit" value="login">
-        </form>
+        </fieldset>
+
+        <center>
+        <img src="uteplogo.png" width="50%"/>
+        </center>
     </body>
 </html>
