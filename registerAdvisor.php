@@ -1,9 +1,4 @@
-
 <!DOCTYPE html>
-
-
-
-
 <html>
     <head>
         <title>CS Advising</title>
