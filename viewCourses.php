@@ -6,6 +6,7 @@
         $sql =" SELECT * FROM courses WHERE Sid = ".$_SESSION["Sid"] ."";
         $conn = databaseConnection();
         $result = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
+        $result2 = mysqli_query($conn, $sql); 
      
         echo "<br>";
         echo "<br>";
@@ -15,7 +16,7 @@
         echo "<table border='1'>";
 
         //displays column names
-        $row = mysqli_fetch_assoc($result); 
+        $row = mysqli_fetch_assoc($result2); 
         foreach ($row as $field => $value) { // I you want you can right this line like this: foreach($row as $value) {
             echo "<td>" . $field . "</td>"; // I just did not use "htmlspecialchars()" function. 
 
@@ -64,9 +65,6 @@
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
-
-
-
         $conn->close();
     }
 
@@ -117,11 +115,6 @@
                 <input type="submit"  name="add" value="Add course">
             </form>
 
-<<<<<<< HEAD
-        <form action="homeStudent.php" method="get">
-            <input type="submit" value="Home">
-=======
->>>>>>> samuel
 
             Drop Course
             <br>
