@@ -31,12 +31,14 @@
                         //student
                         if(strlen($strEmail) > 12 ){
                             // echo "student";
+                            $_SESSION["home"] = "homeStudent.php";
                             Redirect('homeStudent.php', false);
 
                         }
                         //advisor
                         else{
-                        //    echo "advisor";
+                            // echo "advisor";
+                            $_SESSION["home"] = "homeAdvisor.php";
                             Redirect('homeAdvisor.php', false);
 
                         } 
