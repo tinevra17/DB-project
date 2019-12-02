@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>CS Advising</title>
-    </head>    
-    <body bgcolor="F5F5F5">   
-        <?php
+<?php
         include "config.php";
 
             if(isset($_GET['submit'])){
@@ -12,18 +6,41 @@
                 $email = htmlentities($_GET['email']);
                 $username = htmlentities($_GET['username']);
                 $password = htmlentities($_GET['password']);
-                $name = htmlentities($_GET['name']);
+                $Fname =  htmlentities($_GET['Fname']);
+                $Lname =  htmlentities($_GET['Lname']);
+                $name =  $Fname . " " . $Lname;
 
 
-                if($email != '' And $username != '' And $password != '' And $name!= '' ){
+                if($email != '' And $username != '' And $password != '' And $Fname!= '' And $Lname!= ''){
                     //insert sql command
-                    $sql = "INSERT INTO user ( Uemail, Username, Upassword, Uname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $name . "')";
-                    //echo $sql;
+                    $sql = "INSERT INTO user ( Uemail, Username, Upassword, Fname, Lname) VALUES ( ". "'".$email."' , " . "'". $username . "'" . " , " . "'". $password ."'"  . " , " . "'". $Fname . "' , " . "'". $Lname ."')";
+                    $updateAdvisor = "INSERT INTO advisor (Uemail) VALUES ( ". "'".$email."" .  "')";
+                    //echo $updateAdviosr;
+                    // $string = " INSERT INTO advisor (`Uemail`) VALUES ('s')";
+
+                    // if ($conection->query($string) === TRUE) {
+                    //     echo "Hello ". $string . ", you have succesfully register!";
+                                        
+                    // } else {
+                    //     echo "fic";
+                    // }
 
                     if ($conection->query($sql) === TRUE) {
-                        echo "Hello ". $name . ", you have succesfully register!";
+                        // echo "Hello ". $name . ", you have succesfully register!";
+
                     } else {
                         echo "Error: " . $sql . "<br>" . $conn->error;
+                    }
+
+
+                    if ($conection->query($updateAdvisor) === TRUE) {
+                        echo "Hello ". $name . ", you have succesfully register!";
+
+
+
+                        
+                    } else {
+                        echo "Error: " . $string . "<br>" . $conn->error;
                     }
                     $conection->close();
 
@@ -37,12 +54,25 @@
         ?>
 
         <?php
-        function Query($url){
-            echo "<script>location.href=' ". $url  ." ';</script>";
-            exit();
-        }
+            function Query($url){
+                echo "<script>location.href=' ". $url  ." ';</script>";
+                exit();
+            }
 
-        ?>     
+            //redirects to another php file 
+            function Redirect($url){
+                echo "<script>location.href=' ". $url  ." ';</script>";
+                    exit();
+            }
+            
+
+        ?> 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CS Advising</title>
+    </head>    
+    <body bgcolor="F5F5F5">       
         <fieldset> 
         <legend><h2>Register for an Account</h2></legend>
         <form method = "get" action = "">
@@ -59,7 +89,16 @@
             <input type= "text" name = "password"> <br/>
            
             <input type="submit" name="submit" value="Submit"></input>
+
+
+            
         </form>
+
+        <form action="index.php" action="">
+            <input name="logOut" type="submit" value="Home" />
+        </form>
+
+
         <br>
         </fieldset>
         <center>

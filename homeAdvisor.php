@@ -24,12 +24,8 @@ session_start();
 
         <br/>
 
-        <form action=".php" action="">
-            <input name="viewCourses" type="submit" value="View Courses" />
-        </form>
-
-        <form action="appointment.php" action="">
-            <input name="appointments" type="submit" value="Appointments" />
+        <form action="viewStudents.php" action="">
+            <input name="viewCourses" type="submit" value="Students" />
         </form>
 
 
