@@ -1,5 +1,9 @@
 <?php
 session_start();
+function Redirect($url){
+    echo "<script>location.href=' ". $url  ." ';</script>";
+    exit();
+}
 ?>
 <?php
     include "config.php";
@@ -34,6 +38,9 @@ session_start();
         }
         
     }
+
+
+
     $conection->close();
 
 ?>

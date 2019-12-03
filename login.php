@@ -76,7 +76,7 @@
             <input type= "password" name = "password"> <br/>
             <input type="submit" name="submit" value="Log In"></input>
         </form>
-
+ç
         <form action="index.php" action="post">
             Not a user?  <br/>
             <input name="submit2" type="submit" value="Home" />

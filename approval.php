@@ -5,7 +5,6 @@
     function displayStudentInfo(){
         $sql =" SELECT * FROM student WHERE Sid ='".  $_SESSION["studentID"]  ."' ";
 
-
         //echo $sql;
         $conn = databaseConnection();
         $result = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
@@ -40,8 +39,62 @@
         echo "<br>";
     }
 
+
+    function displayForm(){
+        // $sql =" SELECT * FROM student WHERE Sid ='".   ."' ";
+        $sql =" SELECT * FROM courses WHERE Sid = ".$_SESSION["studentID"] ."";
+
+        //echo $sql;
+        $conn = databaseConnection();
+        $conn2 = databaseConnection();
+        $result = mysqli_query($conn2, $sql); // First parameter is just return of "mysqli_connect()" function
+        $result2 = mysqli_query($conn, $sql); // First parameter is just return of "mysqli_connect()" function
+            echo "<table  id='table2' border='1'>";
+
+            // displays column names
+            $row = mysqli_fetch_assoc($result); 
+            foreach ($row as  $value) { // I you want you can right this line like this: foreach($row as $value) {
+                echo "<td>" . $field . "</td>"; // I just did not use "htmlspecialchars()" function. 
+
+            }
+            echo "</tr>";
+
+            //display information of the table
+            while ($row = mysqli_fetch_assoc($result2)) { // Important line !!! Check summary get row on array ..
+
+                foreach ($row as  $value) { // I you want you can right this line like this: foreach($row as $value) {
+                    echo "<td>" . $value . "</td>"; // I just did not use "htmlspecialchars()" function. 
+                }
+                echo "</tr>";
+               
+            }
+
+        echo "</table>";
+        echo "<br>";
+    }
+
     if(isset($_GET['home'])){
-        Redirect('homeStudent.php', false);
+        Redirect('homeAdvisor.php', false);
+    }
+
+    if(isset($_GET['approve'])){
+        $conection = databaseConnection();
+
+
+        $approve = "UPDATE appointment SET approve = 'Yes' WHERE Sid = " ."'".  $_SESSION["studentID"]."'";
+        //echo $sql;
+    
+        if($result = mysqli_query($conection, $approve)){
+
+            Redirect('email.php', false);
+            //echo "approved";
+    
+            
+        }
+    
+        $conection->close();
+
+       // Redirect('homeAdvisor.php', false);
     }
 
     function Redirect($url){  
@@ -76,14 +129,15 @@
 
 
 
-            Courses
+            Student Advising Form
+
+            <?php
+                displayForm();
+            ?>
+
             <br>
             <form method = "get" action = "">
-                <input id="textfield" name="Aemail" type="text" placeholder="Advisor Email" />
-                <input id="textfield" name="Aoffice" type="text" placeholder="Advisor Office" />
-                <input id="textfield" name="date" type="text" placeholder="Date" />
-                <input id="textfield" name="time" type="text" placeholder="Time" />
-                <input type="submit"  name="add" value="Create Appointment">
+                <input type="submit"  name="approve" value="Approve Form">
             </form>
 
 
