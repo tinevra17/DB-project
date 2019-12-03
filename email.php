@@ -15,19 +15,34 @@ if(isset($_GET['home'])){
 
 if(isset($_GET['sorry'])){
 
-    $name = $_GET['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $message = $_POST['message'];
-    $formcontent=" From: $name \n Message: $message";
-    $recipient = "samueltinevra@gmail.com";
-    $subject = "Contact Form";
-    $mailheader = "From: $email \r\n";
-    mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+    // $name = $_GET['name'];
+    // $email = $_POST['email'];
+    // $email = "samueltinevra@gmail.com";
+    // $phone = $_POST['phone'];
+    // $message = $_POST['message'];
+    // $formcontent=" From: $name \n Message: $message";
+    // $recipient = $_SESSION["email"];
+    $subject = "Advising";
+    // $mailheader = "From: $email \r\n";
+
+    // $email = "samueltinevra@gmail.com";
+    // $to = "tinevra17@hotmail.com";
+    // $message = "lol";
+    // $subject = "Advising";
+    // mail($to,$subject,$message);
+    //mail($recipient, $subject, $formcontent, $mailheader) or die("Error!");
+
+    $msg = $_POST['message'];
+   
+
+    // use wordwrap() if lines are longer than 70 characters
+    $msg = wordwrap($msg,70);
+
+    // send email
+    mail($_SESSION["email"],$subject,$msg);
 
 
-    echo "Fuc";
-    echo $name;
+    //echo $name;
     // Redirect('homeAdvisor.php', false);
 }
     
